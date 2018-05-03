@@ -141,37 +141,31 @@ Example:
 	},
 	Type: metrics.Stats{},
 	PostRun: cmds.PostRunMap{
-		cmds.CLI: func(req *cmds.Request, re cmds.ResponseEmitter) cmds.ResponseEmitter {
-			reNext, res := cmds.NewChanResponsePair(req)
-
-			go func() {
-				defer re.Close()
-
-				polling, _ := res.Request().Options["poll"].(bool)
-				if polling {
-					fmt.Fprintln(os.Stdout, "Total Up    Total Down  Rate Up     Rate Down")
+		cmds.CLI: func(res cmds.Response, re cmds.ResponseEmitter) error {
+			polling, _ := res.Request().Options["poll"].(bool)
+			if polling {
+				fmt.Fprintln(os.Stdout, "Total Up    Total Down  Rate Up     Rate Down")
+			}
+			for {
+				v, err := res.Next()
+				if err != nil {
+					return err
 				}
-				for {
-					v, err := res.Next()
-					if !cmds.HandleError(err, res, re) {
-						break
-					}
 
-					bs := v.(*metrics.Stats)
+				bs := v.(*metrics.Stats)
 
-					if !polling {
-						printStats(os.Stdout, bs)
-						return
-					}
-
-					fmt.Fprintf(os.Stdout, "%8s    ", humanize.Bytes(uint64(bs.TotalOut)))
-					fmt.Fprintf(os.Stdout, "%8s    ", humanize.Bytes(uint64(bs.TotalIn)))
-					fmt.Fprintf(os.Stdout, "%8s/s  ", humanize.Bytes(uint64(bs.RateOut)))
-					fmt.Fprintf(os.Stdout, "%8s/s      \r", humanize.Bytes(uint64(bs.RateIn)))
+				if !polling {
+					printStats(os.Stdout, bs)
+					return nil
 				}
-			}()
 
-			return reNext
+				fmt.Fprintf(os.Stdout, "%8s    ", humanize.Bytes(uint64(bs.TotalOut)))
+				fmt.Fprintf(os.Stdout, "%8s    ", humanize.Bytes(uint64(bs.TotalIn)))
+				fmt.Fprintf(os.Stdout, "%8s/s  ", humanize.Bytes(uint64(bs.RateOut)))
+				fmt.Fprintf(os.Stdout, "%8s/s      \r", humanize.Bytes(uint64(bs.RateIn)))
+			}
+
+			return nil
 		},
 	},
 }

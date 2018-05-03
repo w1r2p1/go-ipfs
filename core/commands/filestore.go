@@ -72,39 +72,34 @@ The output is:
 		}
 	},
 	PostRun: cmds.PostRunMap{
-		cmds.CLI: func(req *cmds.Request, re cmds.ResponseEmitter) cmds.ResponseEmitter {
-			reNext, res := cmds.NewChanResponsePair(req)
-
-			go func() {
-				defer re.Close()
-
-				var errors bool
-				for {
-					v, err := res.Next()
-					if !cmds.HandleError(err, res, re) {
-						break
-					}
-
-					r, ok := v.(*filestore.ListRes)
-					if !ok {
-						log.Error(e.New(e.TypeErr(r, v)))
-						return
-					}
-
-					if r.ErrorMsg != "" {
-						errors = true
-						fmt.Fprintf(os.Stderr, "%s\n", r.ErrorMsg)
-					} else {
-						fmt.Fprintf(os.Stdout, "%s\n", r.FormatLong())
-					}
+		cmds.CLI: func(res cmds.Response, re cmds.ResponseEmitter) error {
+			var errors bool
+			for {
+				v, err := res.Next()
+				if err != nil {
+					return err
 				}
 
-				if errors {
-					re.SetError("errors while displaying some entries", cmdkit.ErrNormal)
+				r, ok := v.(*filestore.ListRes)
+				if !ok {
+					// TODO or just return that error? why didn't we do that before?
+					log.Error(e.New(e.TypeErr(r, v)))
+					return nil
 				}
-			}()
 
-			return reNext
+				if r.ErrorMsg != "" {
+					errors = true
+					fmt.Fprintf(os.Stderr, "%s\n", r.ErrorMsg)
+				} else {
+					fmt.Fprintf(os.Stdout, "%s\n", r.FormatLong())
+				}
+			}
+
+			if errors {
+				return fmt.Errorf("errors while displaying some entries")
+			}
+
+			return nil
 		},
 	},
 	Type: filestore.ListRes{},

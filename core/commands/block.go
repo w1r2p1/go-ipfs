@@ -287,17 +287,8 @@ It takes a list of base58 encoded multihashes to remove.
 		return res.Emit(ch)
 	},
 	PostRun: cmds.PostRunMap{
-		cmds.CLI: func(req *cmds.Request, re cmds.ResponseEmitter) cmds.ResponseEmitter {
-			reNext, res := cmds.NewChanResponsePair(req)
-
-			go func() {
-				defer re.Close()
-
-				err := util.ProcRmOutput(res.Next, os.Stdout, os.Stderr)
-				cmds.HandleError(err, res, re)
-			}()
-
-			return reNext
+		cmds.CLI: func(res cmds.Response, re cmds.ResponseEmitter) error {
+			return util.ProcRmOutput(res.Next, os.Stdout, os.Stderr)
 		},
 	},
 	Type: util.RemovedBlock{},

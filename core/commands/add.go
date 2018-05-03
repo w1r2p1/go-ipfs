@@ -323,11 +323,10 @@ You can now check what blocks have been created by:
 		return <-errCh
 	},
 	PostRun: cmds.PostRunMap{
-		cmds.CLI: func(req *cmds.Request, re cmds.ResponseEmitter) cmds.ResponseEmitter {
-			reNext, res := cmds.NewChanResponsePair(req)
-			outChan := make(chan interface{})
-
+		cmds.CLI: func(res cmds.Response, re cmds.ResponseEmitter) error {
 			sizeChan := make(chan int64, 1)
+			outChan := make(chan interface{})
+			req := res.Request()
 
 			sizeFile, ok := req.Files.(files.SizeFile)
 			if ok {
@@ -433,38 +432,31 @@ You can now check what blocks have been created by:
 				}
 			}
 
-			go func() {
-				// defer order important! First close outChan, then wait for output to finish, then close re
-				defer re.Close()
+			if e := res.Error(); e != nil {
+				close(outChan)
+				return e
+			}
 
-				if e := res.Error(); e != nil {
-					defer close(outChan)
-					re.SetError(e.Message, e.Code)
-					return
+			wait := make(chan struct{})
+			go progressBar(wait)
+
+			defer func() { <-wait }()
+			defer close(outChan)
+
+			for {
+				v, err := res.Next()
+				if err != nil {
+					return err
 				}
 
-				wait := make(chan struct{})
-				go progressBar(wait)
-
-				defer func() { <-wait }()
-				defer close(outChan)
-
-				for {
-					v, err := res.Next()
-					if !cmds.HandleError(err, res, re) {
-						break
-					}
-
-					select {
-					case outChan <- v:
-					case <-req.Context.Done():
-						re.SetError(req.Context.Err(), cmdkit.ErrNormal)
-						return
-					}
+				select {
+				case outChan <- v:
+				case <-req.Context.Done():
+					return req.Context.Err()
 				}
-			}()
+			}
 
-			return reNext
+			return nil
 		},
 	},
 	Type: coreunix.AddedObject{},

@@ -83,42 +83,32 @@ var CatCmd = &cmds.Command{
 		return res.Emit(reader)
 	},
 	PostRun: cmds.PostRunMap{
-		cmds.CLI: func(req *cmds.Request, re cmds.ResponseEmitter) cmds.ResponseEmitter {
-			reNext, res := cmds.NewChanResponsePair(req)
+		cmds.CLI: func(res cmds.Response, re cmds.ResponseEmitter) error {
+			if res.Length() > 0 && res.Length() < progressBarMinSize {
+				return cmds.Copy(re, res)
+			}
 
-			go func() {
-				if res.Length() > 0 && res.Length() < progressBarMinSize {
-					if err := cmds.Copy(re, res); err != nil {
-						re.SetError(err, cmdkit.ErrNormal)
-					}
-
-					return
+			for {
+				v, err := res.Next()
+				if err != nil {
+					return err
 				}
 
-				// Copy closes by itself, so we must not do this before
-				defer re.Close()
-				for {
-					v, err := res.Next()
-					if !cmds.HandleError(err, res, re) {
-						break
-					}
+				switch val := v.(type) {
+				case io.Reader:
+					bar, reader := progressBarForReader(os.Stderr, val, int64(res.Length()))
+					bar.Start()
 
-					switch val := v.(type) {
-					case io.Reader:
-						bar, reader := progressBarForReader(os.Stderr, val, int64(res.Length()))
-						bar.Start()
-
-						err = re.Emit(reader)
-						if err != nil {
-							log.Error(err)
-						}
-					default:
-						log.Warningf("cat postrun: received unexpected type %T", val)
+					err = re.Emit(reader)
+					if err != nil {
+						return err
 					}
+				default:
+					log.Warningf("cat postrun: received unexpected type %T", val)
 				}
-			}()
+			}
 
-			return reNext
+			return nil
 		},
 	},
 }
