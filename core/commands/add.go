@@ -446,6 +446,10 @@ You can now check what blocks have been created by:
 			for {
 				v, err := res.Next()
 				if err != nil {
+					if err == io.EOF {
+						return nil
+					}
+
 					return err
 				}
 

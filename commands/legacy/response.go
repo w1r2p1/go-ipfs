@@ -34,7 +34,10 @@ func (rw *responseWrapper) Output() interface{} {
 		// get first emitted value
 		x, err := rw.Next()
 		if err != nil {
-			return nil
+			ch := make(chan interface{})
+			log.Error(err)
+			close(ch)
+			return (<-chan interface{})(ch)
 		}
 		if e, ok := x.(*cmdkit.Error); ok {
 			ch := make(chan interface{})
@@ -141,7 +144,7 @@ func (r *fakeResponse) Request() oldcmds.Request {
 // SetError forwards the call to the underlying ResponseEmitter
 func (r *fakeResponse) SetError(err error, code cmdkit.ErrorType) {
 	defer r.once.Do(func() { close(r.wait) })
-	r.re.SetError(err, code)
+	r.re.CloseWithError(cmdkit.Errorf(code, err.Error()))
 }
 
 // Error is an empty stub

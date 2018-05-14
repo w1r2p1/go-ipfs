@@ -133,22 +133,26 @@ Example:
 			select {
 			case <-time.After(interval):
 			case <-req.Context.Done():
+				break
 			}
-
-			return nil
 		}
 
+		return nil
 	},
 	Type: metrics.Stats{},
 	PostRun: cmds.PostRunMap{
 		cmds.CLI: func(res cmds.Response, re cmds.ResponseEmitter) error {
 			polling, _ := res.Request().Options["poll"].(bool)
+			log.Debug("postrun polling:", polling)
 			if polling {
 				fmt.Fprintln(os.Stdout, "Total Up    Total Down  Rate Up     Rate Down")
 			}
 			for {
 				v, err := res.Next()
 				if err != nil {
+					if err == io.EOF {
+						return nil
+					}
 					return err
 				}
 

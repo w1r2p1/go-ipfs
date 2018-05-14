@@ -739,7 +739,7 @@ stat' on the file or any of its ancestors.
 		defer func() {
 			err := wfd.Close()
 			if err != nil {
-				re.SetError(err, cmdkit.ErrNormal)
+				re.CloseWithError(cmdkit.Errorf(cmdkit.ErrNormal, err.Error()))
 			}
 		}()
 

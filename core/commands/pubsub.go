@@ -121,8 +121,13 @@ This command outputs data in the following encodings:
 				return err
 			}
 
-			return res.Emit(msg)
+			err = res.Emit(msg)
+			if err != nil {
+				return err
+			}
 		}
+
+		return nil
 	},
 	Encoders: cmds.EncoderMap{
 		cmds.Text: cmds.MakeEncoder(func(req *cmds.Request, w io.Writer, v interface{}) error {
