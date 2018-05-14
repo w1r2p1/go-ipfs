@@ -3,7 +3,7 @@ package commands
 import (
 	"fmt"
 
-	"gx/ipfs/QmdE4gMduCKCGAcczM2F5ioYDfdeKuPix138wrES1YSr7f/go-ipfs-cmdkit"
+	"gx/ipfs/QmVViZcg6N29WMrbfbzuYXFAGVoCvcR5oqadxfnMcLMnmx/go-ipfs-cmdkit"
 
 	cmds "github.com/ipfs/go-ipfs/commands"
 )
