@@ -60,16 +60,16 @@ The output is:
 			})
 
 			return res.Emit(out)
-		} else {
-			fileOrder, _ := req.Options["file-order"].(bool)
-			next, err := filestore.ListAll(fs, fileOrder)
-			if err != nil {
-				return err
-			}
-
-			out := listResToChan(req.Context, next)
-			return res.Emit(out)
 		}
+
+		fileOrder, _ := req.Options["file-order"].(bool)
+		next, err := filestore.ListAll(fs, fileOrder)
+		if err != nil {
+			return err
+		}
+
+		out := listResToChan(req.Context, next)
+		return res.Emit(out)
 	},
 	PostRun: cmds.PostRunMap{
 		cmds.CLI: func(res cmds.Response, re cmds.ResponseEmitter) error {

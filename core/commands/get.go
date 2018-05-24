@@ -124,11 +124,7 @@ may also specify the level of compression by specifying '-l=<1-9>'.
 				Size:        int64(res.Length()),
 			}
 
-			if err := gw.Write(outReader, outPath); err != nil {
-				return err
-			}
-
-			return nil
+			return gw.Write(outReader, outPath)
 		},
 	},
 }
