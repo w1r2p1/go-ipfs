@@ -110,8 +110,6 @@ var CatCmd = &cmds.Command{
 					log.Warningf("cat postrun: received unexpected type %T", val)
 				}
 			}
-
-			return nil
 		},
 	},
 }

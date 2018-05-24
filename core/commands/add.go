@@ -459,8 +459,6 @@ You can now check what blocks have been created by:
 					return req.Context.Err()
 				}
 			}
-
-			return nil
 		},
 	},
 	Type: coreunix.AddedObject{},

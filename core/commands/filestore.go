@@ -78,7 +78,7 @@ The output is:
 				v, err := res.Next()
 				if err != nil {
 					if err == io.EOF {
-						return nil
+						break
 					}
 					return err
 				}
@@ -87,7 +87,7 @@ The output is:
 				if !ok {
 					// TODO or just return that error? why didn't we do that before?
 					log.Error(e.New(e.TypeErr(r, v)))
-					return nil
+					break
 				}
 
 				if r.ErrorMsg != "" {

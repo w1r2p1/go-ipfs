@@ -136,8 +136,6 @@ Example:
 				break
 			}
 		}
-
-		return nil
 	},
 	Type: metrics.Stats{},
 	PostRun: cmds.PostRunMap{
@@ -168,8 +166,6 @@ Example:
 				fmt.Fprintf(os.Stdout, "%8s/s  ", humanize.Bytes(uint64(bs.RateOut)))
 				fmt.Fprintf(os.Stdout, "%8s/s      \r", humanize.Bytes(uint64(bs.RateIn)))
 			}
-
-			return nil
 		},
 	},
 }
