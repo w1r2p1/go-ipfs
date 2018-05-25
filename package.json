@@ -324,14 +324,14 @@
       "version": "3.0.5"
     },
     {
-      "hash": "QmPD1shgXLux1wASLMmCx9hLwQS5tj2Sw1f8qtaXyM7MgR",
+      "hash": "QmZNMbfKTVuL7Cp3jWnKaVe3kNT69AyBweMCtWB2s4rEgh",
       "name": "go-ipfs-cmds",
       "version": "2.0.0-alpha"
     },
     {
-      "hash": "QmVViZcg6N29WMrbfbzuYXFAGVoCvcR5oqadxfnMcLMnmx",
+      "hash": "QmdE4gMduCKCGAcczM2F5ioYDfdeKuPix138wrES1YSr7f",
       "name": "go-ipfs-cmdkit",
-      "version": "1.1.0"
+      "version": "1.1.1"
     },
     {
       "author": "whyrusleeping",

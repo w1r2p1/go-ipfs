@@ -7,8 +7,8 @@ import (
 	"reflect"
 	"sync"
 
-	"gx/ipfs/QmPD1shgXLux1wASLMmCx9hLwQS5tj2Sw1f8qtaXyM7MgR/go-ipfs-cmds"
-	"gx/ipfs/QmVViZcg6N29WMrbfbzuYXFAGVoCvcR5oqadxfnMcLMnmx/go-ipfs-cmdkit"
+	"gx/ipfs/QmdE4gMduCKCGAcczM2F5ioYDfdeKuPix138wrES1YSr7f/go-ipfs-cmdkit"
+	"gx/ipfs/QmZNMbfKTVuL7Cp3jWnKaVe3kNT69AyBweMCtWB2s4rEgh/go-ipfs-cmds"
 
 	oldcmds "github.com/ipfs/go-ipfs/commands"
 )
@@ -123,16 +123,13 @@ func (r *fakeResponse) Send(errCh chan<- error) {
 	defer close(errCh)
 
 	out := r.Output()
-	if out == nil {
+
+	// don't emit nil or Single{nil}
+	if out == nil || out == (cmds.Single{nil}) {
 		return
 	}
 
-	if ch, ok := out.(chan interface{}); ok {
-		out = (<-chan interface{})(ch)
-	}
-
-	err := r.re.Emit(out)
-	errCh <- err
+	errCh <- r.re.Emit(out)
 	return
 }
 
