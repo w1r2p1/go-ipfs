@@ -22,11 +22,11 @@ import (
 	uio "github.com/ipfs/go-ipfs/unixfs/io"
 
 	u "gx/ipfs/QmPdKqUcHGFdeSpvjVoaTRPPstGif9GBZb5Q56RVw9o69A/go-ipfs-util"
-	offline "gx/ipfs/QmPf114DXfa6TqGKYhBGR7EtXRho4rCJgwyA1xkuMY5vwF/go-ipfs-exchange-offline"
 	chunker "gx/ipfs/QmR4G4WBNGA5S5pvjFiTkuehstC9769sLAHei8vZernhYR/go-ipfs-chunker"
+	bstore "gx/ipfs/QmSY83sym2peHSDpqv1ZtE1YAkytbMXtUXg75TaYuyy4BH/go-ipfs-blockstore"
 	ipld "gx/ipfs/QmWi2BYBL5gJ3CiAiQchg6rn1A8iBsrWy51EYxvHVjFvLb/go-ipld-format"
+	offline "gx/ipfs/QmX3gGXZwaBdvSJXm8jFicigETaMXqoEWY3N1iD9wQBsGb/go-ipfs-exchange-offline"
 	cid "gx/ipfs/QmapdYm1b22Frv3k17fqrBYTFRxwiaVJkB299Mfn33edeB/go-cid"
-	bstore "gx/ipfs/QmbaPGg81pvQiC5vTXtC9Jo8rdrWUjRaugH71WYNsgi6Ev/go-ipfs-blockstore"
 	ds "gx/ipfs/QmeiCcJfDW1GJnWUArudsv5rQsihpi4oyddPhdqo3CfX6i/go-datastore"
 	dssync "gx/ipfs/QmeiCcJfDW1GJnWUArudsv5rQsihpi4oyddPhdqo3CfX6i/go-datastore/sync"
 )

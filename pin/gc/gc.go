@@ -12,10 +12,10 @@ import (
 	pin "github.com/ipfs/go-ipfs/pin"
 	"github.com/ipfs/go-ipfs/thirdparty/verifcid"
 
-	offline "gx/ipfs/QmPf114DXfa6TqGKYhBGR7EtXRho4rCJgwyA1xkuMY5vwF/go-ipfs-exchange-offline"
+	bstore "gx/ipfs/QmSY83sym2peHSDpqv1ZtE1YAkytbMXtUXg75TaYuyy4BH/go-ipfs-blockstore"
 	ipld "gx/ipfs/QmWi2BYBL5gJ3CiAiQchg6rn1A8iBsrWy51EYxvHVjFvLb/go-ipld-format"
+	offline "gx/ipfs/QmX3gGXZwaBdvSJXm8jFicigETaMXqoEWY3N1iD9wQBsGb/go-ipfs-exchange-offline"
 	cid "gx/ipfs/QmapdYm1b22Frv3k17fqrBYTFRxwiaVJkB299Mfn33edeB/go-cid"
-	bstore "gx/ipfs/QmbaPGg81pvQiC5vTXtC9Jo8rdrWUjRaugH71WYNsgi6Ev/go-ipfs-blockstore"
 	logging "gx/ipfs/Qmbi1CTJsbnBZjCEgc2otwu8cUFPsGpzWXG7edVCLZ7Gvk/go-log"
 	dstore "gx/ipfs/QmeiCcJfDW1GJnWUArudsv5rQsihpi4oyddPhdqo3CfX6i/go-datastore"
 )

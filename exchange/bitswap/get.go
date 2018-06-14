@@ -6,9 +6,9 @@ import (
 
 	notifications "github.com/ipfs/go-ipfs/exchange/bitswap/notifications"
 
+	blockstore "gx/ipfs/QmSY83sym2peHSDpqv1ZtE1YAkytbMXtUXg75TaYuyy4BH/go-ipfs-blockstore"
 	blocks "gx/ipfs/QmTRCUvZLiir12Qr6MV3HKfKMHX8Nf1Vddn6t2g5nsQSb9/go-block-format"
 	cid "gx/ipfs/QmapdYm1b22Frv3k17fqrBYTFRxwiaVJkB299Mfn33edeB/go-cid"
-	blockstore "gx/ipfs/QmbaPGg81pvQiC5vTXtC9Jo8rdrWUjRaugH71WYNsgi6Ev/go-ipfs-blockstore"
 )
 
 type getBlocksFunc func(context.Context, []*cid.Cid) (<-chan blocks.Block, error)

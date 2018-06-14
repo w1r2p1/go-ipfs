@@ -23,9 +23,9 @@ import (
 	uio "github.com/ipfs/go-ipfs/unixfs/io"
 
 	humanize "gx/ipfs/QmPSBJL4momYnE7DcUyk2DVhD6rH488ZmHBGLbxNdhU44K/go-humanize"
-	offline "gx/ipfs/QmPf114DXfa6TqGKYhBGR7EtXRho4rCJgwyA1xkuMY5vwF/go-ipfs-exchange-offline"
 	mh "gx/ipfs/QmPnFwZ2JXKnXgMw8CdBPxn7FWh6LLdjUjxV1fKHuJnkr8/go-multihash"
 	ipld "gx/ipfs/QmWi2BYBL5gJ3CiAiQchg6rn1A8iBsrWy51EYxvHVjFvLb/go-ipld-format"
+	offline "gx/ipfs/QmX3gGXZwaBdvSJXm8jFicigETaMXqoEWY3N1iD9wQBsGb/go-ipfs-exchange-offline"
 	cmds "gx/ipfs/QmaFrNcnXHp579hUixbcTH1TNtNwsMogtBCwUUUwzBwYoM/go-ipfs-cmds"
 	cid "gx/ipfs/QmapdYm1b22Frv3k17fqrBYTFRxwiaVJkB299Mfn33edeB/go-cid"
 	logging "gx/ipfs/Qmbi1CTJsbnBZjCEgc2otwu8cUFPsGpzWXG7edVCLZ7Gvk/go-log"

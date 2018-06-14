@@ -15,11 +15,11 @@ import (
 	mfs "github.com/ipfs/go-ipfs/mfs"
 	ft "github.com/ipfs/go-ipfs/unixfs"
 
-	offline "gx/ipfs/QmPf114DXfa6TqGKYhBGR7EtXRho4rCJgwyA1xkuMY5vwF/go-ipfs-exchange-offline"
 	mh "gx/ipfs/QmPnFwZ2JXKnXgMw8CdBPxn7FWh6LLdjUjxV1fKHuJnkr8/go-multihash"
 	pb "gx/ipfs/QmPtj12fdwuAqj9sBSTNUxBNu8kCGNp8b3o8yUzMm5GHpq/pb"
+	bstore "gx/ipfs/QmSY83sym2peHSDpqv1ZtE1YAkytbMXtUXg75TaYuyy4BH/go-ipfs-blockstore"
+	offline "gx/ipfs/QmX3gGXZwaBdvSJXm8jFicigETaMXqoEWY3N1iD9wQBsGb/go-ipfs-exchange-offline"
 	cmds "gx/ipfs/QmaFrNcnXHp579hUixbcTH1TNtNwsMogtBCwUUUwzBwYoM/go-ipfs-cmds"
-	bstore "gx/ipfs/QmbaPGg81pvQiC5vTXtC9Jo8rdrWUjRaugH71WYNsgi6Ev/go-ipfs-blockstore"
 	cmdkit "gx/ipfs/QmdE4gMduCKCGAcczM2F5ioYDfdeKuPix138wrES1YSr7f/go-ipfs-cmdkit"
 	files "gx/ipfs/QmdE4gMduCKCGAcczM2F5ioYDfdeKuPix138wrES1YSr7f/go-ipfs-cmdkit/files"
 )

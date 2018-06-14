@@ -6,9 +6,9 @@ import (
 	merkledag "github.com/ipfs/go-ipfs/merkledag"
 	pin "github.com/ipfs/go-ipfs/pin"
 
+	blocks "gx/ipfs/QmSY83sym2peHSDpqv1ZtE1YAkytbMXtUXg75TaYuyy4BH/go-ipfs-blockstore"
 	ipld "gx/ipfs/QmWi2BYBL5gJ3CiAiQchg6rn1A8iBsrWy51EYxvHVjFvLb/go-ipld-format"
 	cid "gx/ipfs/QmapdYm1b22Frv3k17fqrBYTFRxwiaVJkB299Mfn33edeB/go-cid"
-	blocks "gx/ipfs/QmbaPGg81pvQiC5vTXtC9Jo8rdrWUjRaugH71WYNsgi6Ev/go-ipfs-blockstore"
 )
 
 // NewBlockstoreProvider returns key provider using bstore.AllKeysChan
