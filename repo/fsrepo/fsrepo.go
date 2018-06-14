@@ -26,7 +26,6 @@ import (
 	lockfile "gx/ipfs/QmQ7rzxiZbjc9tnBag9g89cHAwditrS9FUicRYR55dUzd1/go-fs-lock"
 	ma "gx/ipfs/QmUxSEGbv2nmYNnfXi7839wwQqTN3kwQeUxe8dTjZWZs7J/go-multiaddr"
 	measure "gx/ipfs/QmXez8SABR95KKKgU9XFtTTQ79QRn2nWS9o5pa1EcHsLs5/go-ds-measure"
-	lockfile "gx/ipfs/QmXkNy1uAd5Tm3DQpDrQyjjQAdRYyhDpA1W7uiTrcEWHBV/go-fs-lock"
 	logging "gx/ipfs/Qmbi1CTJsbnBZjCEgc2otwu8cUFPsGpzWXG7edVCLZ7Gvk/go-log"
 	ds "gx/ipfs/QmeiCcJfDW1GJnWUArudsv5rQsihpi4oyddPhdqo3CfX6i/go-datastore"
 )
