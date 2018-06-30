@@ -5,15 +5,15 @@ import (
 	"strings"
 
 	oldcmds "github.com/ipfs/go-ipfs/commands"
+	lgc "github.com/ipfs/go-ipfs/commands/legacy"
 	dag "github.com/ipfs/go-ipfs/core/commands/dag"
 	e "github.com/ipfs/go-ipfs/core/commands/e"
 	ocmd "github.com/ipfs/go-ipfs/core/commands/object"
 	unixfs "github.com/ipfs/go-ipfs/core/commands/unixfs"
-	lgc "github.com/ipfs/go-ipfs/commands/legacy"
 
 	"gx/ipfs/QmZNMbfKTVuL7Cp3jWnKaVe3kNT69AyBweMCtWB2s4rEgh/go-ipfs-cmds"
-	"gx/ipfs/QmdE4gMduCKCGAcczM2F5ioYDfdeKuPix138wrES1YSr7f/go-ipfs-cmdkit"
 	logging "gx/ipfs/QmcVVHfdyv15GVPk7NrxdWjh2hLVccXnoD8j2tyQShiXJb/go-log"
+	"gx/ipfs/QmdE4gMduCKCGAcczM2F5ioYDfdeKuPix138wrES1YSr7f/go-ipfs-cmdkit"
 )
 
 var log = logging.Logger("core/commands")
