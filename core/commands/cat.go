@@ -9,7 +9,7 @@ import (
 	core "github.com/ipfs/go-ipfs/core"
 	coreunix "github.com/ipfs/go-ipfs/core/coreunix"
 
-	cmds "gx/ipfs/QmZNMbfKTVuL7Cp3jWnKaVe3kNT69AyBweMCtWB2s4rEgh/go-ipfs-cmds"
+	cmds "gx/ipfs/QmP4PeWcVRVEdsXjjQRubGmWLE4AyvChamNSXvzQuJ6DEq/go-ipfs-cmds"
 	"gx/ipfs/QmdE4gMduCKCGAcczM2F5ioYDfdeKuPix138wrES1YSr7f/go-ipfs-cmdkit"
 )
 

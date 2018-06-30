@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"testing"
 
-	cmds "gx/ipfs/QmZNMbfKTVuL7Cp3jWnKaVe3kNT69AyBweMCtWB2s4rEgh/go-ipfs-cmds"
+	cmds "gx/ipfs/QmP4PeWcVRVEdsXjjQRubGmWLE4AyvChamNSXvzQuJ6DEq/go-ipfs-cmds"
 	cmdkit "gx/ipfs/QmdE4gMduCKCGAcczM2F5ioYDfdeKuPix138wrES1YSr7f/go-ipfs-cmdkit"
 )
 
