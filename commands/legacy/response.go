@@ -125,7 +125,7 @@ func (r *fakeResponse) Send(errCh chan<- error) {
 	out := r.Output()
 
 	// don't emit nil or Single{nil}
-	if out == nil || out == (cmds.Single{nil}) {
+	if out == nil || out == (cmds.Single{Value: nil}) {
 		return
 	}
 
